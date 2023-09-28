@@ -20,7 +20,7 @@ from langchain.agents.agent_toolkits import (
 
 # Set APIkey for OpenAI Service
 # Can sub this out for other LLM providers
-os.environ['OPENAI_API_KEY'] = 'youropenaiapikeyhere'
+os.environ['OPENAI_API_KEY'] = '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'
 
 # Create instance of OpenAI LLM
 llm = OpenAI(temperature=0.1, verbose=True)
@@ -48,7 +48,7 @@ agent_executor = create_vectorstore_agent(
     toolkit=toolkit,
     verbose=True
 )
-st.title('🦜🔗 GPT Investment Banker')
+st.title('leina.ai')
 # Create a text input box for the user
 prompt = st.text_input('Input your prompt here')
 
