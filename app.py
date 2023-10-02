@@ -8,6 +8,7 @@ import streamlit as st
 
 # Import PDF document loaders...there's other ones as well!
 from langchain.document_loaders import PyPDFLoader
+from langchain.document_loaders import CSVLoader
 # Import chroma as the vector store 
 from langchain.vectorstores import Chroma
 
@@ -27,16 +28,14 @@ llm = OpenAI(temperature=0.1, verbose=True)
 embeddings = OpenAIEmbeddings()
 
 # Create and load PDF Loader
-loader = PyPDFLoader('annualreport.pdf')
-# Split pages from pdf 
-pages = loader.load_and_split()
+loader = CSVLoader('trialdata.csv')
 # Load documents into vector database aka ChromaDB
-store = Chroma.from_documents(pages, embeddings, collection_name='annualreport')
+store = Chroma.from_documents(pages, embeddings, collection_name='trialdata')
 
 # Create vectorstore info object - metadata repo?
 vectorstore_info = VectorStoreInfo(
-    name="annual_report",
-    description="a banking annual report as a pdf",
+    name="trialdata",
+    description="trialpropertydata",
     vectorstore=store
 )
 # Convert the document store into a langchain toolkit
