@@ -58,10 +58,3 @@ if prompt:
     response = agent_executor.run(prompt)
     # ...and write it out to the screen
     st.write(response)
-
-    # With a streamlit expander  
-    with st.expander('Document Similarity Search'):
-        # Find the relevant pages
-        search = store.similarity_search_with_score(prompt) 
-        # Write out the first 
-        st.write(search[0][0].page_content) 
