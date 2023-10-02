@@ -4,11 +4,10 @@ footer {
 	
 	}
 footer:after {
-	content:'goodbye'; 
+	content:'DISCLAIMER FOR PERMISSIONS, ADVICE. See Privacy Policy.'; 
 	visibility: visible;
 	display: block;
 	position: relative;
-	background-color: red;
 	padding: 5px;
 	top: 2px;
 }
