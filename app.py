@@ -30,7 +30,7 @@ embeddings = OpenAIEmbeddings()
 # Create and load PDF Loader
 loader = CSVLoader('trialdata.csv')
 # Load documents into vector database aka ChromaDB
-store = Chroma.from_documents(pages, embeddings, collection_name='trialdata')
+store = Chroma.from_documents(embeddings, collection_name='trialdata')
 
 # Create vectorstore info object - metadata repo?
 vectorstore_info = VectorStoreInfo(
