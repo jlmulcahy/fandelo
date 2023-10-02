@@ -64,7 +64,7 @@ agent_executor = create_vectorstore_agent(
 )
 st.title('leina.ai')
 # Create a text input box for the user
-prompt = st.text_input('Input your prompt here')
+prompt = st.text_input(placeholder='Enter your response here') 
 
 # If the user hits enter
 if prompt:
