@@ -1,16 +1,3 @@
-# Load custom CSS
-with open('styles.css') as f:
-    st. markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
-
-# Hide footer
-hide_streamlit_style = """
-            <style>
-            #MainMenu {visibility: hidden;}
-            footer {visibility: hidden;}
-            </style>
-            """
-st.markdown(hide_streamlit_style, unsafe_allow_html=True) 
-
 # Import os to set API key
 import os
 # Import OpenAI as main LLM service
@@ -30,6 +17,19 @@ from langchain.agents.agent_toolkits import (
     VectorStoreToolkit,
     VectorStoreInfo
 )
+
+# Load custom CSS
+with open('styles.css') as f:
+    st. markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
+
+# Hide footer
+hide_streamlit_style = """
+            <style>
+            #MainMenu {visibility: hidden;}
+            footer {visibility: hidden;}
+            </style>
+            """
+st.markdown(hide_streamlit_style, unsafe_allow_html=True) 
 
 # Set APIkey for OpenAI Service
 # Can sub this out for other LLM providers
