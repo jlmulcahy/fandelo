@@ -17,7 +17,7 @@ os.environ['OPENAI_API_KEY'] = 'sk-muCbfjda2qwThVi8gqYBT3BlbkFJltTmAVsVubl8f4etu
 
 # Create instance of OpenAI LLM
 llm = OpenAI(temperature=0.1, verbose=True)
-embeddings = HuggingFaceEmbeddings()
+embeddings = OpenAIEmbeddings()
 
 
 @st.cache_resource
@@ -26,7 +26,7 @@ def load_pdf():
     loaders = [PyPDFLoader('annualreportshort.pdf')]
 
     index = VectorstoreIndexCreator(
-        embedding = HuggingFaceEmbeddings(model_name='all-MiniLM-L12-v2'), 
+        embedding = OpenAIEmbeddings, 
         text_splitter=RecursiveCharacterTextSplitter(chunk_size=100, chunk_overlap=0)
     ).from_loaders(loaders)
 
