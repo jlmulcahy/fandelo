@@ -23,7 +23,7 @@ embeddings = OpenAIEmbeddings()
 @st.cache_resource
 def load_pdf(): 
     pdf_name = 'annualreportshort.pdf'
-    loaders = [PyPDFLoader('pdf_name')]
+    loaders = [PyPDFLoader(pdf_name)]
 
     index = VectorstoreIndexCreator(
         embedding = OpenAIEmbeddings, 
