@@ -26,7 +26,7 @@ def load_pdf():
     loaders = [PyPDFLoader(pdf_name)]
 
     index = VectorstoreIndexCreator(
-        embedding = OpenAIEmbeddings, 
+        embedding = OpenAIEmbeddings(), 
         text_splitter=RecursiveCharacterTextSplitter(chunk_size=100, chunk_overlap=0)
     ).from_loaders(loaders)
 
