@@ -49,6 +49,7 @@ agent_executor = create_vectorstore_agent(
     verbose=True
 )
 st.title('leina.ai')
+st.warning('This is a warning', icon="⚠️")
 
 # Initialize chat history
 if "messages" not in st.session_state:
