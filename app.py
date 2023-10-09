@@ -26,7 +26,7 @@ os.environ['OPENAI_API_KEY'] = 'sk-muCbfjda2qwThVi8gqYBT3BlbkFJltTmAVsVubl8f4etu
 llm = OpenAI(temperature=0.1, verbose=True)
 embeddings = OpenAIEmbeddings()
 
-# Create and load PDF Loader
+# Create and load csv Loader
 loader = CSVLoader('trialdata.csv')
 # Split pages from csv
 pages = loader.load_and_split()
@@ -49,7 +49,8 @@ agent_executor = create_vectorstore_agent(
     verbose=True
 )
 st.title('leina.ai')
-st.warning('This is a warning', icon="⚠️")
+with st.expander("Disclaimer"):
+    st.write("The information on this website is for general information only. It should not be taken as constituting professional advice. Please view the privacy policy and terms for more information.")
 
 # Initialize chat history
 if "messages" not in st.session_state:
@@ -61,7 +62,7 @@ for message in st.session_state.messages:
         st.markdown(message["content"])
 
 # Accept user input
-if prompt := st.chat_input("What is up?"):
+if prompt := st.chat_input("Tell us about yourself and your goals."):
     # Add user message to chat history
     st.session_state.messages.append({"role": "user", "content": prompt})
     # Display user message in chat message container
