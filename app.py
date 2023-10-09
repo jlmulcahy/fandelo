@@ -18,20 +18,6 @@ from langchain.agents.agent_toolkits import (
     VectorStoreInfo
 )
 
-# Load custom CSS
-with open('styles.css') as f:
-    st. markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
-
-# Hide footer
-hide_streamlit_style = """
-            <style>
-            #MainMenu {visibility: hidden;}
-            footer {visibility: hidden;}
-            footer:after {visibility: visible;}
-            </style>
-            """
-st.markdown(hide_streamlit_style, unsafe_allow_html=True) 
-
 # Set APIkey for OpenAI Service
 # Can sub this out for other LLM providers
 os.environ['OPENAI_API_KEY'] = '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'
@@ -63,12 +49,27 @@ agent_executor = create_vectorstore_agent(
     verbose=True
 )
 st.title('leina.ai')
-# Create a text input box for the user
-prompt = st.text_input('Say hi')
 
-# If the user hits enter
-if prompt:
-    # Then pass the prompt to the LLM
-    response = agent_executor.run(prompt)
-    # ...and write it out to the screen
-    st.write(response)
+# Initialize chat history
+if "messages" not in st.session_state:
+    st.session_state.messages = []
+
+# Display chat messages from history on app rerun
+for message in st.session_state.messages:
+    with st.chat_message(message["role"]):
+        st.markdown(message["content"])
+
+# Accept user input
+if prompt := st.chat_input("What is up?"):
+    # Add user message to chat history
+    st.session_state.messages.append({"role": "user", "content": prompt})
+    # Display user message in chat message container
+    with st.chat_message("user"):
+        st.markdown(prompt)
+    # Display assistant response in chat message container
+    with st.chat_message("assistant"):
+        message_placeholder = st.empty()
+        full_response = ""
+        full_response = agent_executor.run(prompt)
+        message_placeholder.markdown(full_response)
+    st.session_state.messages.append({"role": "assistant", "content": full_response})
