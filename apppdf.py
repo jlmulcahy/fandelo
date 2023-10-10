@@ -27,16 +27,16 @@ llm = OpenAI(temperature=0.1, verbose=True)
 embeddings = OpenAIEmbeddings()
 
 # Create and load csv Loader
-loader = PyPDFLoader('feedbacksummarysnap.pdf')
+loader = PyPDFLoader('fandelofeedbackfull.pdf')
 # Split pages from csv
 pages = loader.load_and_split()
 # Load documents into vector database aka ChromaDB
-store = Chroma.from_documents(pages, embeddings, collection_name='summarysnaps')
+store = Chroma.from_documents(pages, embeddings, collection_name='fandeloresources')
 
 # Create vectorstore info object - metadata repo?
 vectorstore_info = VectorStoreInfo(
-    name="summarysnapsfandelo",
-    description="a partial snapshot of fandelo's user feedback",
+    name="feedbackfulllength",
+    description="a full snapshot of fandelo's user feedback",
     vectorstore=store
 )
 # Convert the document store into a langchain toolkit
