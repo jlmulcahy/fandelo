@@ -27,16 +27,16 @@ llm = OpenAI(temperature=0.1, verbose=True)
 embeddings = OpenAIEmbeddings()
 
 # Create and load csv Loader
-loader = PyPDFLoader('145180.pdf')
+loader = PyPDFLoader('feedbacksummarysnap.pdf')
 # Split pages from csv
 pages = loader.load_and_split()
 # Load documents into vector database aka ChromaDB
-store = Chroma.from_documents(pages, embeddings, collection_name='mqgreportsample')
+store = Chroma.from_documents(pages, embeddings, collection_name='summarysnaps')
 
 # Create vectorstore info object - metadata repo?
 vectorstore_info = VectorStoreInfo(
-    name="mqgreportsample1",
-    description="a snapshot of macquarie's report",
+    name="summarysnapsfandelo",
+    description="a partial snapshot of fandelo's user feedback",
     vectorstore=store
 )
 # Convert the document store into a langchain toolkit
