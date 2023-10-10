@@ -6,7 +6,7 @@ from langchain.embeddings import OpenAIEmbeddings
 # Bring in streamlit for UI/app interface
 import streamlit as st
 
-# Import CSV loader
+# Import PDF loader
 from langchain.document_loaders import PyPDFLoader
 # Import chroma as the vector store 
 from langchain.vectorstores import Chroma
@@ -19,14 +19,13 @@ from langchain.agents.agent_toolkits import (
 )
 
 # Set APIkey for OpenAI Service
-# Can sub this out for other LLM providers
 os.environ['OPENAI_API_KEY'] = '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'
 
 # Create instance of OpenAI LLM
 llm = OpenAI(temperature=0.1, verbose=True)
 embeddings = OpenAIEmbeddings()
 
-# Create and load csv Loader
+# Create and load PDF Loader
 loader = PyPDFLoader('fandelofeedbackfull.pdf')
 # Split pages from csv
 pages = loader.load_and_split()
@@ -48,7 +47,7 @@ agent_executor = create_vectorstore_agent(
     toolkit=toolkit,
     verbose=True
 )
-st.title('fandelo feedback q&a')
+st.title('Fandelo Feedback Bot')
 
 # Initialize chat history
 if "messages" not in st.session_state:
@@ -60,7 +59,7 @@ for message in st.session_state.messages:
         st.markdown(message["content"])
 
 # Accept user input
-if prompt := st.chat_input("ask a q."):
+if prompt := st.chat_input("Any questions on our user interviews?"):
     # Add user message to chat history
     st.session_state.messages.append({"role": "user", "content": prompt})
     # Display user message in chat message container
