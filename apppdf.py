@@ -47,7 +47,7 @@ agent_executor = create_vectorstore_agent(
     toolkit=toolkit,
     verbose=True
 )
-st.title('Fandelo Feedback Bot')
+st.title('Fandelo Feedback Bot 🤖')
 
 # Initialize chat history
 if "messages" not in st.session_state:
